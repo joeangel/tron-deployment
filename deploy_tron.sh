@@ -93,6 +93,11 @@ elif [ $NET == "testnet" ]; then
   CONF_PATH=$BIN_PATH/test_net_config.conf
 fi
 
+# custom peers
+#custom_peer="\ \ \ \ \"`dig example.com +short`:18888\"",
+#sed -i "410i $our_peer_01" $CONF_PATH
+#sed -i '410i \ \ \ \ "8.8.8.8:18888",' $CONF_PATH
+
 if [ -n $RPC_PORT ]; then
   sed "s/port = 50051/port = $RPC_PORT/g" $CONF_PATH > tmp
   cat tmp > $CONF_PATH
