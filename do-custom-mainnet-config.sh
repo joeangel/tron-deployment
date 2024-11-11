@@ -3,6 +3,7 @@
 # Custom config settings
 SUPPORT_CONSTANT=true
 SAVE_INTERNAL_TX=true
+OPEN_HISTORY_QUERY_WHEN_LITE_FN=true
 
 # Custom script settings
 CUSTOM_MAINNET_BIN_PATH=https://raw.githubusercontent.com/joeangel/tron-deployment/master/main_net_config.conf
@@ -22,6 +23,13 @@ fi
 if [ -n "$SAVE_INTERNAL_TX" ]; then
   from_string="saveInternalTx = false"
   to_string="saveInternalTx = $SAVE_INTERNAL_TX"
+  sed "s/$from_string/$to_string/g" "$CONF_PATH" > tmp
+  cat tmp > "$CONF_PATH"
+fi
+
+if [ -n "$OPEN_HISTORY_QUERY_WHEN_LITE_FN" ]; then
+  from_string="# openHistoryQueryWhenLiteFN = false"
+  to_string="openHistoryQueryWhenLiteFN = $OPEN_HISTORY_QUERY_WHEN_LITE_FN"
   sed "s/$from_string/$to_string/g" "$CONF_PATH" > tmp
   cat tmp > "$CONF_PATH"
 fi
